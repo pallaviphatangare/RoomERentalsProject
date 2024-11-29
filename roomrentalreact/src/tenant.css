@@ -1,0 +1,117 @@
+ 
+ body {
+    background-color: #f8f9fa;
+    font-family: 'Arial', sans-serif;
+}
+
+.card-header h4 {
+    margin: 0;
+    font-size: 1.5rem;
+}
+
+.table th, .table td {
+    vertical-align: middle;
+}
+
+.btn-sm {
+    margin-right: 10px;
+    transition: transform 0.2s ease;
+}
+
+.btn-sm:hover {
+    transform: scale(1.1);
+}
+
+.card-header {
+    text-align: center;
+    background-color: #007bff;
+}
+
+.form-label {
+    font-weight: bold;
+    color: #495057;
+}
+
+.btn-success, .btn-warning, .btn-danger {
+    width: 120px;
+    transition: background-color 0.3s ease;
+}
+
+.btn-success:hover {
+    background-color: #28a745cc;
+}
+
+.btn-warning:hover {
+    background-color: #ffc107cc;
+}
+
+.btn-danger:hover {
+    background-color: #dc3545cc;
+}
+
+.form-control {
+    border-radius: 5px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    transition: box-shadow 0.3s ease;
+}
+
+.form-control:focus {
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+
+.card {
+    border-radius: 15px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card:hover {
+    box-shadow: 0px 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.table-hover tbody tr:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+}
+
+.form-footer {
+    text-align: center;
+}
+
+.btn-update-profile {
+    padding: 10px 30px;
+    font-size: 1.1rem;
+    border-radius: 50px;
+    transition: background-color 0.4s, box-shadow 0.4s ease-in-out;
+}
+
+.btn-update-profile:hover {
+    background-color: #218838;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+
+@media (max-width: 576px) {
+    .btn-sm {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    .table th,
+    .table td {
+        font-size: 14px;
+    }
+
+    .form-control {
+        width: 100%;
+    }
+
+    .btn-success,
+    .btn-warning,
+    .btn-danger {
+        width: 100%;
+    }
+
+    .row>div {
+        margin-bottom: 15px;
+    }
+}
