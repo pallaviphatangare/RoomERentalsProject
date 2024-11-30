@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Room Rental Data</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+        th, td {
+            padding: 10px;
+            text-align: left;
+            border: 1px solid #ddd;
+        }
+        button {
+            margin: 10px;
+            padding: 10px;
+            cursor: pointer;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            font-size: 16px;
+        }
+          .button-container {
+            text-align: center; 
+        }
+
+       
+    </style>
+</head>
+<body>
+
+    <h1 style="text-align: center;">Room Rental Data</h1>
+
+    <div class="button-container">
+        <button onclick="fetchData('users')">View Users</button>
+        <button onclick="fetchData('bookings')">View Bookings</button>
+        <button onclick="fetchData('contact')">View Contact Forms</button>
+    </div>
+    
+    <div id="data-container">
+    </div>
+    
+    <script>
+        function fetchData(type) {
+            let url;
+            if (type === 'users') {
+                url = 'http://localhost:8080/api/users';
+            } else if (type === 'bookings') {
+                url = 'http://localhost:8080/api/bookings/all';
+            } else if (type === 'contact') {
+                url = 'http://localhost:8080/api/contact/all';
+            }
+            
+            fetch(url)
+                .then(response => response.json())
+                .then(data => displayData(type, data))
+                .catch(error => console.error('Error fetching data:', error));
+        }
+
+        function displayData(type, data) {
+            let container = document.getElementById('data-container');
+            container.innerHTML = '';  // Clear previous data
+            
+            let table = document.createElement('table');
+            
+            if (type === 'users') {
+                let headers = ['ID', 'Name', 'Email', 'Phone'];
+                let headerRow = table.insertRow();
+                headers.forEach(header => {
+                    let cell = document.createElement('th');
+                    cell.textContent = header;
+                    headerRow.appendChild(cell);
+                });
+                
+                data.forEach(user => {
+                    let row = table.insertRow();
+                    row.insertCell().textContent = user.id;
+                    row.insertCell().textContent = user.name;
+                    row.insertCell().textContent = user.email;
+                    row.insertCell().textContent = user.phone;
+                });
+            } else if (type === 'bookings') {
+                let headers = ['Name', 'Email', 'Phone', 'Aadhar', 'Check-in Date', 'Special Requests'];
+                let headerRow = table.insertRow();
+                headers.forEach(header => {
+                    let cell = document.createElement('th');
+                    cell.textContent = header;
+                    headerRow.appendChild(cell);
+                });
+                
+                data.forEach(booking => {
+                    let row = table.insertRow();
+                    row.insertCell().textContent = booking.name;
+                    row.insertCell().textContent = booking.email;
+                    row.insertCell().textContent = booking.phone;
+                    row.insertCell().textContent = booking.aadhar;
+                    row.insertCell().textContent = booking.checkin;
+                    row.insertCell().textContent = booking.specialRequests;
+                });
+            } else if (type === 'contact') {
+                let headers = ['Name', 'Email', 'Message'];
+                let headerRow = table.insertRow();
+                headers.forEach(header => {
+                    let cell = document.createElement('th');
+                    cell.textContent = header;
+                    headerRow.appendChild(cell);
+                });
+                
+                data.forEach(contact => {
+                    let row = table.insertRow();
+                    row.insertCell().textContent = contact.name;
+                    row.insertCell().textContent = contact.email;
+                    row.insertCell().textContent = contact.message;
+                });
+            }
+            
+            container.appendChild(table);
+        }
+    </script>
+
+</body>
+</html>
